@@ -1,0 +1,93 @@
+﻿@model StoreLite.Models.ImageModel
+@{
+    var active = 1;
+}
+@section styles {
+    <style>
+        body {
+            padding: 0;
+        }
+
+        #zoom_03 {
+            margin: 0 auto;
+            display: block;
+        }
+
+        .maincontent {
+            margin: 0 auto;
+            max-width: 1000px;
+            max-height: 700px;
+            padding: 10px;
+        }
+
+        #gal1 {
+            position: relative;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+            #gal1 img {
+                border: 2px solid white;
+                width: 130px;
+            }
+
+        .active img {
+            border: 2px solid #333 !important;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="span12">
+        <section class="maincontent">
+            <img data-zoom-image="@Model.Images[0].Replace("{x}/", "")"
+                    src="@Model.Images[0].Replace("{x}", "thumbs/")"
+                    id="zoom_03">
+            <hr />
+            <div id="gal1">
+                @foreach (var item in @Model.Images)
+                {
+                    if (active == 1)
+                    { 
+                    <a data-zoom-image="@item.Replace("{x}", "")"
+                            data-image="@item.Replace("{x}", "thumbs/")"
+                            class="elevatezoom-gallery active" href="#">
+                        <img src="@item.Replace("{x}", "thumbs")">
+                    </a>
+                    }
+                    else
+                    {
+                    <a data-zoom-image="@item.Replace("{x}", "")"
+                            data-image="@item.Replace("{x}", "thumbs/")"
+                            class="elevatezoom-gallery" href="#">
+                        <img src="@item.Replace("{x}", "thumbs/")">
+                    </a>
+                    }
+                    active++;
+                }
+            </div>
+        </section>
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery.elevatezoom.js"></script>
+    <script>
+        $(function () {
+            $("#zoom_03").elevateZoom(
+                {
+                    gallery: 'gal1',
+                    cursor: 'pointer',
+                    galleryActiveClass: "active",
+                    imageCrossfade: true,
+                    loadingIcon: "http://www.elevateweb.co.uk/spinner.gif",
+                    responsive: true
+                });
+            $("#zoom_03").on("click", function (e) {
+                var ez = $('#zoom_03').data('elevateZoom');
+                $.fancybox(ez.getGalleryList());
+                return false;
+            });
+        });
+    </script>
+}
+
