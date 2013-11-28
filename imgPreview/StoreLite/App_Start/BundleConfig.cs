@@ -9,29 +9,13 @@ namespace StoreLite
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js", new CssRewriteUrlTransform()));
 
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-            //            "~/Scripts/jquery-ui-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
-
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/bootstrapJS").Include("~/Scripts/bootstrap.*"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrapJS").Include("~/Scripts/bootstrap.*", new CssRewriteUrlTransform()));
 
             bundles.Add(new StyleBundle("~/bundles/bootstrapCSS")
                 .Include("~/Content/bootstrap.css", new CssRewriteUrlTransform())
-                .Include("~/Content/bootstrap-responsive.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/gridJS").Include("~/Scripts/gridmvc.*"));
-
-            bundles.Add(new StyleBundle("~/bundles/gridCSS").Include("~/Content/Gridmvc.css"));
+                .Include("~/Content/bootstrap-responsive.css", new CssRewriteUrlTransform()));
 
             BundleTable.EnableOptimizations = true;
         }

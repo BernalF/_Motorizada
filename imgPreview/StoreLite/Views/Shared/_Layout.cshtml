@@ -5,16 +5,8 @@
     <title>@ViewBag.Title - Motorizada</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    @Styles.Render("~/bundles/bootstrapCSS")
-    @Scripts.Render("~/bundles/modernizr")
-
-    @if ((ViewBag.hasGrid != null) && (ViewBag.hasGrid == true))
-    { 
-        @Styles.Render("~/bundles/gridCSS")
-    }
-
-
+    <link href="@System.Configuration.ConfigurationManager.AppSettings["urlMoto"]/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="@System.Configuration.ConfigurationManager.AppSettings["urlMoto"]/Content/bootstrap-responsive.min.css" rel="stylesheet" />
     <style type="text/css">
         body {
             padding-top: 60px;
@@ -58,10 +50,8 @@
         @RenderBody()
     </div>
     <!-- /container -->
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrapJS")
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["urlMoto"]/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["urlMoto"]/Scripts/bootstrap.min.js"></script>
 
 
     @if ((ViewBag.hasGrid != null) && (ViewBag.hasGrid == true))

@@ -70,7 +70,7 @@
     </div>
 </div>
 @section scripts {
-    <script src="~/Scripts/jquery.elevatezoom.js"></script>
+    <script src="@System.Configuration.ConfigurationManager.AppSettings["urlMoto"]/Scripts/jquery.elevatezoom.js"></script>
     <script>
         $(function () {
             $("#zoom_03").elevateZoom(

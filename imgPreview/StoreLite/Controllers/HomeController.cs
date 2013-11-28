@@ -25,7 +25,7 @@ namespace StoreLite.Controllers
             foreach (var i in images)
             {
                 var fn = Path.GetFileName(i);
-                imgs.Images.Add("/StoreLite/Images/{x}/" + fn);                
+                imgs.Images.Add(System.Configuration.ConfigurationManager.AppSettings["urlMoto"] + "/Images/{x}/" + fn);                
             }
             return View(imgs);
         }
